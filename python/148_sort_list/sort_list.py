@@ -11,8 +11,9 @@ class Solution(object):
         if not head:
             return None
 
-        if not head.next:
-            return head
+        # if not head.next:
+        #     return head
+        dummy = ListNode(0)
 
         dummy_left = ListNode(0)
         left = dummy_left
@@ -21,6 +22,7 @@ class Solution(object):
 
         pivot = head.val
         pivot_node = head
+        head = head.next
 
         while head:
             if pivot > head.val:
@@ -35,17 +37,47 @@ class Solution(object):
         left.next = None
         right.next = None
 
-        self.head.next = self.sort_list(dummy_left.next)
+        # ptr = dummy_left.next
+        # while ptr:
+        #     print(ptr.val)
+        #     ptr = ptr.next
 
-        ptr = self.head
+        # print('=============')
+
+        # ptr = dummy_right.next
+        # while ptr:
+        #     print(ptr.val)
+        #     ptr = ptr.next
+
+        # print('-------------')
+        # print('-------------')
+
+        ptr = dummy
         while ptr.next:
             ptr = ptr.next
 
+        ptr.next = self.sort_list(dummy_left.next)
+
+        while ptr.next:
+            ptr = ptr.next
         ptr.next = pivot_node
+        pivot_node.next = None
+
+        # print('*')
+        # ptr = dummy.next
+        # while ptr:
+        #     print(ptr.val)
+        #     ptr = ptr.next
 
         pivot_node.next = self.sort_list(dummy_right.next)
 
-        return self.head.next
+        # print('***')
+        # ptr = dummy.next
+        # while ptr:
+        #     print(ptr.val)
+        #     ptr = ptr.next
+
+        return dummy.next
 
 def transfor_list_to_string(head : ListNode):
     if not head:
@@ -74,6 +106,7 @@ def main():
     head = transfor_string_to_list(items)
 
     solution = Solution()
+    # solution.sort_list(head)
     l = solution.sort_list(head)
 
     string = transfor_list_to_string(l)

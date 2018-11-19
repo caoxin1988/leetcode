@@ -11,8 +11,9 @@ class Solution(object):
         if not head:
             return None
 
-        # if not head.next:
-        #     return head
+        if not head.next:
+            return head
+
         dummy = ListNode(0)
 
         dummy_left = ListNode(0)
@@ -37,21 +38,6 @@ class Solution(object):
         left.next = None
         right.next = None
 
-        # ptr = dummy_left.next
-        # while ptr:
-        #     print(ptr.val)
-        #     ptr = ptr.next
-
-        # print('=============')
-
-        # ptr = dummy_right.next
-        # while ptr:
-        #     print(ptr.val)
-        #     ptr = ptr.next
-
-        # print('-------------')
-        # print('-------------')
-
         ptr = dummy
         while ptr.next:
             ptr = ptr.next
@@ -63,19 +49,7 @@ class Solution(object):
         ptr.next = pivot_node
         pivot_node.next = None
 
-        # print('*')
-        # ptr = dummy.next
-        # while ptr:
-        #     print(ptr.val)
-        #     ptr = ptr.next
-
         pivot_node.next = self.sort_list(dummy_right.next)
-
-        # print('***')
-        # ptr = dummy.next
-        # while ptr:
-        #     print(ptr.val)
-        #     ptr = ptr.next
 
         return dummy.next
 

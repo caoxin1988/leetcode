@@ -1,9 +1,6 @@
 class Solution:
     def reverseWords(self, s):
-        s = s.strip()
-        s = s.split(' ')
-
-        print(s)
+        s = s.strip().split()
 
         return ' '.join(s[::-1])
 
